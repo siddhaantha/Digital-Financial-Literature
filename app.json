@@ -1,0 +1,98 @@
+{
+  "name": "FinSaathi - AI Agent for Digital Financial Literacy",
+  "description": "An AI-powered Digital Financial Literacy Agent for Indian users, powered by IBM Granite (RAG). Helps users understand UPI, avoid online scams, understand interest rates, budgeting, government schemes, and personal finance — in 12 Indian languages.",
+  "problem_statement": "IBM Problem Statement #7 — AI Agent for Digital Financial Literacy",
+  "team": "siddhaantha",
+  "github": "https://github.com/siddhaantha/Digital-Financial-Literature",
+
+  "technology_stack": {
+    "llm": "IBM Granite 4 (ibm/granite-4-h-small) via IBM watsonx.ai",
+    "rag_pipeline": "ChromaDB + multilingual-e5-base embeddings",
+    "backend": "FastAPI (Python 3.12) + Uvicorn",
+    "frontend": "Vanilla HTML5 / CSS3 / JavaScript (single-page dark-theme chat UI)",
+    "multilingual": "langdetect + deep-translator (Google Translate) — 12 Indian languages",
+    "embedding_model": "intfloat/multilingual-e5-base (sentence-transformers)",
+    "vector_store": "ChromaDB (persistent on disk)",
+    "cloud_platform": "IBM Cloud Lite + IBM watsonx.ai Studio"
+  },
+
+  "ibm_services": {
+    "mandatory_service": "IBM Granite LLM via IBM watsonx.ai",
+    "model_id": "ibm/granite-4-h-small",
+    "sdk": "ibm-watsonx-ai >= 1.1.0",
+    "cloud_tier": "IBM Cloud Lite (Free)"
+  },
+
+  "features": [
+    "RAG-powered financial Q&A with source attribution",
+    "12 Indian language support (Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Punjabi, Malayalam, Odia, Urdu, English)",
+    "Fraud alert system — detects urgency/scam keywords and prepends immediate safety warnings",
+    "Topic chips for quick navigation (UPI, Fraud, Loans, Budget, Schemes, Investment)",
+    "12 curated knowledge base documents from RBI, NPCI, cybercrime.gov.in, SEBI, IRDAI, Ministry of Finance",
+    "Dark-theme chat UI with typing indicator and source pills",
+    "REST API with /chat, /health, /categories, /suggest endpoints",
+    "Auto Swagger UI at /docs"
+  ],
+
+  "knowledge_base_categories": [
+    "UPI & Digital Payments",
+    "Fraud Prevention & Cybercrime",
+    "Interest Rates & Loans",
+    "Budgeting & Savings",
+    "Government Schemes (Jan Dhan, MUDRA, APY, PMSBY, PMJJBY)",
+    "Investments & Insurance"
+  ],
+
+  "supported_languages": [
+    {"code": "en", "name": "English"},
+    {"code": "hi", "name": "Hindi"},
+    {"code": "ta", "name": "Tamil"},
+    {"code": "te", "name": "Telugu"},
+    {"code": "bn", "name": "Bengali"},
+    {"code": "mr", "name": "Marathi"},
+    {"code": "gu", "name": "Gujarati"},
+    {"code": "kn", "name": "Kannada"},
+    {"code": "pa", "name": "Punjabi"},
+    {"code": "ml", "name": "Malayalam"},
+    {"code": "or", "name": "Odia"},
+    {"code": "ur", "name": "Urdu"}
+  ],
+
+  "api_endpoints": {
+    "GET /": "Serves the chat UI",
+    "POST /chat": "Main RAG chat endpoint — accepts message + optional language code",
+    "GET /health": "Health check with IBM config status and document count",
+    "GET /categories": "Returns all topic categories for UI chips",
+    "GET /suggest": "Returns suggested questions per category"
+  },
+
+  "setup": {
+    "python_version": "3.10+",
+    "install": "pip install -r requirements.txt",
+    "configure": "cp .env.example .env  # then fill IBM_API_KEY and IBM_PROJECT_ID",
+    "run": "python main.py",
+    "url": "http://localhost:8000"
+  },
+
+  "env_vars_required": {
+    "IBM_API_KEY": "IBM Cloud API Key (from cloud.ibm.com → Manage → API Keys)",
+    "IBM_PROJECT_ID": "watsonx.ai Project ID (from project settings)",
+    "IBM_WATSONX_URL": "https://us-south.ml.cloud.ibm.com",
+    "GRANITE_MODEL_ID": "ibm/granite-4-h-small"
+  },
+
+  "knowledge_sources": [
+    "RBI — rbi.org.in",
+    "NPCI — npci.org.in",
+    "National Cyber Crime Reporting Portal — cybercrime.gov.in",
+    "SEBI — sebi.gov.in",
+    "IRDAI — irdai.gov.in",
+    "Ministry of Finance — Jan Dhan Yojana, MUDRA",
+    "AMFI — amfiindia.com"
+  ],
+
+  "architecture": "User Query → Language Detection → Translate to EN → e5 Embed → ChromaDB Retrieve → IBM Granite Generate → Translate Back → User",
+
+  "version": "1.0.0",
+  "license": "Submitted for IBM Problem Statement #7 — AI Agent for Digital Financial Literacy"
+}

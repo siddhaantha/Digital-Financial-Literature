@@ -1,0 +1,31 @@
+# Environment / Secrets - NEVER commit these
+.env
+*.env
+
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ChromaDB vector index (auto-rebuilt on startup)
+data/chroma_db/
+
+# IDE / OS
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
